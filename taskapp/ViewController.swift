@@ -11,14 +11,12 @@ import UIKit
 import RealmSwift
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var tableView: UITableView!
-    
     
     // Realmインスタンスを取得する
     let realm = try! Realm()  // ←追加
     
-    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var focusTextField: UITextField!
     
     // DB内のタスクが格納されるリスト。
     // 日付近い順\順でソート：降順
@@ -33,7 +31,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-   // MARK: UITableViewDataSourceプロトコルのメソッド
+    
+    
+    
+    // MARK: UITableViewDataSourceプロトコルのメソッド
     // データの数（＝セルの数）を返すメソッド
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskArray.count
@@ -43,7 +44,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 再利用可能な cell を得る
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
         //何番目のセルがか自動で取得（上で指定したデータの数だけ繰り返す）taskに代入
         let task = taskArray[indexPath.row]
         //セルのテキストを当該セルが持つtitleデータ代入
@@ -54,18 +54,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let dateString:String = formatter.string(from: task.date)
         cell.detailTextLabel?.text = dateString
-        
-        //ここでカテゴリによってUI上で区別するようなコード書きたい
-        if task.category == "high" {
-            cell.backgroundColor? = UIColor.red
-        }
-        if task.category == "med" {
-            cell.backgroundColor? = UIColor.yellow
-        }
-        if task.category == "low" {
-            cell.backgroundColor? = UIColor.blue
-        }
-        
         
         return cell
     }
@@ -101,14 +89,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.realm.delete(self.taskArray[indexPath.row])
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
-               //未通知の通知一覧をそログ出力
-                center.getPendingNotificationRequests {(requests: [UNNotificationRequest] ) in
-                    for request in requests {
-                        print("/---------------")
-                        print(request)
-                        print("---------------/")
+            //未通知の通知一覧をそログ出力
+            center.getPendingNotificationRequests {(requests: [UNNotificationRequest] ) in
+                for request in requests {
+                    print("/---------------")
+                    print(request)
+                    print("---------------/")
                 }
-                    
+                
             }
         }
     }
@@ -123,7 +111,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             //ここは単純にインスタンスを生成しているだけ
             let task = Task()
-             task.date = Date()
+            task.date = Date()
             
             
             let allTasks = realm.objects(Task.self)
@@ -140,8 +128,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.reloadData()
     }
     
+   
+    @IBAction func doFocus(_ sender: Any) {
+        if let  text = focusTextField.text {
+            print(text)
+            taskArray = realm.objects(Task.self).filter("category == %@", text)
+        } else {
+            print("nilです")
+        }
+        
+        
+        
+        
+        
+        
+        tableView.reloadData()
+    }
     
-
+    
+    @IBAction func resetBtn(_ sender: Any) {
+        taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+        
+        tableView.reloadData()
+    }
+    
+    
+    
 }
-
-

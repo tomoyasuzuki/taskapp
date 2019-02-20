@@ -13,42 +13,38 @@ class InputViewController: UIViewController {
     
     //テキストではtitleTextFieldだが自分はtextFieldなので気をつける
     @IBOutlet weak var textField: UITextField!
+   
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var categoryTextField: UITextField!
     
-
+    
+    
+    
     let realm = try! Realm()
     var task: Task!
     
-    var categ = ""
     
-    @IBAction func highBtn(_ sender: Any) {
-        self.categ = "high"
-    }
-    @IBAction func medBtn(_ sender: Any) {
-         self.categ = "medium"
-    }
-    @IBAction func lowBtn(_ sender: Any) {
-         self.categ = "low"
-    }
-    
-    
-   
-    
-    
-    
+    //作成・編集画面がロードされた直後に行う処理
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         //背景をタップしたらdismissKeyBoardメソッドを呼ぶように設定する
         let tapGuesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        
         self.view.addGestureRecognizer(tapGuesture)
         
-        
+        //戻ってきた時にセルの内容を引き継ぐ。
         textField.text = task.title
         contentsTextView.text = task.contents
         datePicker.date = task.date
+        categoryTextField.text = task.category
+        
+        
+        // 枠線の色
+        
+        
         
     }
     
@@ -60,6 +56,19 @@ class InputViewController: UIViewController {
     }
     
     
+    @IBAction func catgWork(_ sender: Any) {
+        
+        categoryTextField.text = "work"
+    }
+    
+    @IBAction func categHouse(_ sender: Any) {
+        categoryTextField.text = "house_work"
+    }
+    
+    @IBAction func categHobby(_ sender: Any) {
+        categoryTextField.text = "hobby"
+    }
+    
     
     //作成・編集画面が消える直前に行う処理。
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,6 +76,7 @@ class InputViewController: UIViewController {
             self.task.title = self.textField.text!
             self.task.contents = self.contentsTextView.text
             self.task.date = self.datePicker.date
+            self.task.category = self.categoryTextField.text!
             self.realm.add(self.task, update: true)
         }
         
@@ -91,7 +101,7 @@ class InputViewController: UIViewController {
         }
         
         
-        //ここでカテゴリも設定する
+     
         
         
         content.sound = UNNotificationSound.default

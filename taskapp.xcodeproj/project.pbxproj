@@ -17,6 +17,30 @@
 		A134D3898BA098B9C4C7E1FC /* Pods_taskapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E44479903D58F61B9322FF6 /* Pods_taskapp.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5749B6EB221D81B00080C349 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5749B6E5221D81B00080C349 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D469AEDEEF99B82428C2AE926D10596;
+			remoteInfo = "Pods-taskapp";
+		};
+		5749B6ED221D81B00080C349 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5749B6E5221D81B00080C349 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 28F93E1799388D139FFEF37DD543A1F0;
+			remoteInfo = Realm;
+		};
+		5749B6EF221D81B00080C349 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5749B6E5221D81B00080C349 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 701063543BF42B474B8137CD2D22A3CE;
+			remoteInfo = RealmSwift;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0F18F6361299738241977328 /* Pods-taskapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskapp.release.xcconfig"; path = "Target Support Files/Pods-taskapp/Pods-taskapp.release.xcconfig"; sourceTree = "<group>"; };
 		3E44479903D58F61B9322FF6 /* Pods_taskapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_taskapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,6 +53,7 @@
 		571D85B8220F9AAB00641319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		571D85BE220FA57E00641319 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		571D85C0220FC12300641319 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		5749B6E5221D81B00080C349 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		6ABEFAC918BC3CAA57E41DE9 /* Pods-taskapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskapp.debug.xcconfig"; path = "Target Support Files/Pods-taskapp/Pods-taskapp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,6 +72,7 @@
 		571D85A0220F9AAA00641319 = {
 			isa = PBXGroup;
 			children = (
+				5749B6E5221D81B00080C349 /* Pods.xcodeproj */,
 				571D85C0220FC12300641319 /* Task.swift */,
 				571D85AB220F9AAA00641319 /* taskapp */,
 				571D85AA220F9AAA00641319 /* Products */,
@@ -75,6 +101,16 @@
 				571D85BE220FA57E00641319 /* InputViewController.swift */,
 			);
 			path = taskapp;
+			sourceTree = "<group>";
+		};
+		5749B6E6221D81B00080C349 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5749B6EC221D81B00080C349 /* Pods_taskapp.framework */,
+				5749B6EE221D81B00080C349 /* Realm.framework */,
+				5749B6F0221D81B00080C349 /* RealmSwift.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		BC21A6CF06289244CEC05B9B /* Pods */ = {
@@ -142,12 +178,42 @@
 			mainGroup = 571D85A0220F9AAA00641319;
 			productRefGroup = 571D85AA220F9AAA00641319 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5749B6E6221D81B00080C349 /* Products */;
+					ProjectRef = 5749B6E5221D81B00080C349 /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				571D85A8220F9AAA00641319 /* taskapp */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5749B6EC221D81B00080C349 /* Pods_taskapp.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_taskapp.framework;
+			remoteRef = 5749B6EB221D81B00080C349 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5749B6EE221D81B00080C349 /* Realm.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Realm.framework;
+			remoteRef = 5749B6ED221D81B00080C349 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5749B6F0221D81B00080C349 /* RealmSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RealmSwift.framework;
+			remoteRef = 5749B6EF221D81B00080C349 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		571D85A7220F9AAA00641319 /* Resources */ = {
